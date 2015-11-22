@@ -20,16 +20,12 @@ Rather than add another step into your build chain, this library helps you encry
 
 This example code lets you keep a master `plaintext_file` on your development box.
 (Be sure to add it to .gitignore so you don't ever upload it by mistake!)
-When your application runs, it will automatically save an encrypted version of the file (`encrypted_file`), which you can add to source control.
+When your application runs, it will automatically save an encrypted version of the file as `encrypted_file`, which you can add to source control.
 On the production server or on other developer's boxes where `plaintext_file` is absent, it will notice that and try to use `encrypted_file` instead.
 From the code's perspective the library usage is the exact same, so the code is identical in both cases.
 
 ```
 autoencrypt = require('yael-autoencrypt');
-// If config.txt exists, read that.
-// If not, read encrypted.txt.
-// As long as your password is not saved in source control,
-// you can put encrypted.txt in your git repo.
 config = autoencrypt({
   password: process.env.CONFIG_PASSWORD,
   plaintext_file: 'secrets.txt',
