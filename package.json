@@ -1,0 +1,18 @@
+{
+  "name": "yael-autoencrypt",
+  "version": "1.0.0",
+  "description": "Encrypt and write a file during development, then read and decrypt it during production.",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "./node_modules/.bin/coffee -c ./"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "yael": "^1.2.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.2"
+  }
+}
