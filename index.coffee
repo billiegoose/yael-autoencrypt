@@ -7,9 +7,15 @@ plaintext_file = null
 encrypted_file = null
 
 main = (options) ->
-  PASSWORD       ?= options.password
-  plaintext_file ?= options.plaintext_file
-  encrypted_file ?= options.encrypted_file || options.plaintext_file + '.yael'
+  cache = options.cache ?= true
+  if cache
+    PASSWORD       ?= options.password
+    plaintext_file ?= options.plaintext_file
+    encrypted_file ?= options.encrypted_file || options.plaintext_file + '.yael'
+  else
+    PASSWORD        = options.password
+    plaintext_file  = options.plaintext_file
+    encrypted_file  = options.encrypted_file || options.plaintext_file + '.yael'
 
   # When no plaintext file exists, load from encrypted file.
   if not fs.existsSync plaintext_file
