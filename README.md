@@ -35,3 +35,27 @@ console.log config
 ```
 Whenever you run your application on a computer where `plaintext_file` is present, it will check that the contents match the decrypted contents of `encrypted_file`.
 If the contents differ, it will overwrite `encrypted_file` with the updated content.
+
+## Caching and using multiple files
+
+For convenience, the module caches the `password`, `plaintext_file`, and `encrypted_file` values in memory.
+This means that once you have called `autoencrypt` with the options, elsewhere in your code you can leave out the options:
+
+```
+autoencrypt = require('yael-autoencrypt')
+config = autoencrypt()
+```
+
+This makes sense if you have one central encrypted config file.
+However this causes a problem if you need to work with *multiple* encrypted config files.
+To get around this, you can add a `cache: false` option:
+
+```
+autoencrypt = require('yael-autoencrypt');
+config = autoencrypt({
+  cache: false,
+  password: process.env.CONFIG_PASSWORD2,
+  plaintext_file: 'other-secrets.txt',
+  encrypted_file: 'other-encrypted.txt'
+})
+```
